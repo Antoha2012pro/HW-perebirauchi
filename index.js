@@ -195,12 +195,9 @@ console.log(getUsersWithFriend(users, 'Goldie Gentry')); // [ 'Elma Head', 'Sher
 
 // Масив імен (поле name) людей, відсортованих в залежності від кількості їх друзів (поле friends)
 
-const getNamesSortedByFriendsCount = users => {
-    // твій код
-};
+const getNamesSortedByFriendsCount = users => [...users].sort((a, b) => a.friends.length - b.friends.length).map(user => user.name);
 
 console.log(getNamesSortedByFriendsCount(users));
-console.log("Я не знаю як робити завдання 3 :( ми походу це просто не вчили");
 
 // [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
 
@@ -210,9 +207,15 @@ console.log("Я не знаю як робити завдання 3 :( ми по�
 // Отримати масив всіх умінь всіх користувачів (поле skills), при цьому не має бути повторюваних умінь і вони повинні бути відсортовані в алфавітному порядку.
 
 const getSortedUniqueSkills = users => {
-    // твій код
-};
+    const skillsOne = users.flatMap(user => user.skills);
+    const skillsTwo = skillsOne.reduce((acc, skill) => {
+        if (!acc.includes(skill)) {
+            acc.push(skill);
+        }
+        return acc;
+    }, []);
+    return skillsTwo.sort((a, b) => a.localeCompare(b));
+}
 
-console.log(getSortedUniqueSkills(users));
-console.log("Я не знаю як робити завдання 3 :( ми походу це просто також не вчили");
+    console.log(getSortedUniqueSkills(users));
 // [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
